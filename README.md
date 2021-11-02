@@ -73,7 +73,7 @@ The training results and best model will be saved in `log_dir`.
 
 Please run 
 
-    sh command_test.sh 
+    sh command.sh 
     
 
 Train the network by running `sh command.sh` please reminder to specify the `mode`(test), `GPU`,`model`(path to PWCLONet model), `data_root`,`checkpoint_path`(path to pre-trained model for testing), `log_dir`, `test_list`(sequences for testing).
