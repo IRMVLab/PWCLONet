@@ -193,7 +193,7 @@ def main(mode = 'train'):
 
         if mode == 'train':
 
-            for epoch in range(0, MAX_EPOCH):
+            for epoch in range(200, MAX_EPOCH):
 
                 log_string('**** EPOCH %03d ****' % (epoch))
                 sys.stdout.flush()
@@ -213,7 +213,7 @@ def main(mode = 'train'):
 
 
 
-                if epoch % 5 == 0 and epoch > 100:
+                if epoch % 2 == 0 and epoch > 100:
 
                     cur_eval_error = eval_one_epoch(sess, ops, test_list = VAL_LIST)
                     
@@ -343,6 +343,10 @@ def eval_one_epoch(sess, ops, test_list = range(11)):
 
         for batch_idx in range(num_batches):
 
+            if batch_idx % 100 == 0:
+                log_string('---- batch %03d in evaluation ----'%(batch_idx))
+
+
             start_idx = batch_idx * BATCH_SIZE
             end_idx = min(end-start, (batch_idx+1) * BATCH_SIZE)
             cur_batch_size = end_idx-start_idx
@@ -370,11 +374,15 @@ def eval_one_epoch(sess, ops, test_list = range(11)):
 
             for n0 in range(cur_batch_size):
 
-                qq = pred_q[n0:n0+1, :]
-                qq = qq.reshape(4)
+                if BATCH_SIZE != 1:
+                    q_one_batch = pred_q[n0:n0+1, :]
+                    t_one_batch = pred_t[n0:n0+1, :]
+                else:
+                    q_one_batch = pred_q
+                    t_one_batch = pred_t
 
-                tt = pred_t[n0:n0+1, :]
-                tt = tt.reshape(3, 1)
+                qq = np.reshape(q_one_batch, [4])
+                tt = np.reshape(t_one_batch, [3, 1])
                 
                 RR = quat2mat(qq)
 

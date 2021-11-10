@@ -1,0 +1,5 @@
+model_checkpoint_path: "0.9224999999999999_t_error_model.ckpt"
+all_model_checkpoint_paths: "../epoch_200_best_model_dir/1.2225_t_error_model.ckpt"
+all_model_checkpoint_paths: "../epoch_202_best_model_dir/1.1575_t_error_model.ckpt"
+all_model_checkpoint_paths: "../epoch_208_best_model_dir/1.1175000000000002_t_error_model.ckpt"
+all_model_checkpoint_paths: "0.9224999999999999_t_error_model.ckpt"
