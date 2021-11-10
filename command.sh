@@ -1,9 +1,10 @@
 python main.py \
     --mode train \
-    --gpu 0 \
+    --gpu 1 \
     --model PWCLO_Net \
     --data_root /tmp/data_odometry_velodyne/dataset \
-    --log_dir pwclo_net_train_ \
+    --log_dir pwclo_net_log_ \
+    --result_dir result \
     --train_list 0 1 2 3 4 5 6 \
     --val_list 7 8 9 10 \
     --test_list 0 1 2 3 4 5 6 7 8 9 10 \

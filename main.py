@@ -9,11 +9,11 @@ import tensorflow as tf
 import importlib
 import os
 import sys
+import kitti_dataset
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(BASE_DIR)
-
-import kitti_dataset
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--mode', default='train', help='train/test mode')
@@ -154,7 +154,6 @@ def main(mode = 'train'):
         # Create a session
         config = tf.ConfigProto()
         config.gpu_options.allow_growth = True
-        # config.gpu_options.per_process_gpu_memory_fraction = 0.95
         config.allow_soft_placement = True
         config.log_device_placement = False
         sess = tf.Session(config=config)
@@ -228,7 +227,7 @@ def main(mode = 'train'):
 
             if CHECKPOINT_PATH != None:
                 eval_one_epoch(sess, ops, test_list = TEST_LIST)
-            
+                log_string("Finished! Please check the result directory! ")
             else:
                 log_string('Please verify the checkpoint for testing !!!')
 

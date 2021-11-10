@@ -9,8 +9,10 @@ import time
 import numpy as np
 
 class OdometryDataset():
-    def __init__(self, root_path = '../', npoints=2048, is_training=True):
+    def __init__(self, root_path = '../', npoints=8192, is_training=True, random_seed = 3):
         
+        self.random_seed = random_seed
+
         self.npoints = npoints
         self.is_training = is_training
         self.datapath = root_path
@@ -24,7 +26,11 @@ class OdometryDataset():
                         [0, 0, 0, 1]])
 
 
+
     def __getitem__(self, index):#
+
+        if not self.is_training:
+            np.random.seed(self.random_seed)
 
         for seq_idx, seq_num in enumerate(self.len_list):
             if index < seq_num:
@@ -188,6 +194,9 @@ class OdometryDataset():
     def __len__(self):
         return len(self.datapath)
 
+    def feed_random(self, random_seed):
+        self.random_seed = random_seed
+        return 0
     
     def read_calib_file(self,path):  # changed
 
@@ -229,7 +238,7 @@ class OdometryDataset():
                         [sinz, cosz, 0],
                         [0, 0, 1]])
         
-        R_trans = Rx.dot(Ry).dot(Rz)##########################################TRANS
+        R_trans = Rx.dot(Ry).dot(Rz)
 
         return R_trans
 
@@ -316,29 +325,4 @@ class OdometryDataset():
                         cx*cz*sy - sx*cy*sz,
                         cx*cy*sz + sx*cz*sy])
 
-
-    def make_dataset(self):
-        
-        do_mapping = True
-        root = os.path.realpath(os.path.expanduser(self.root))
-
-        all_paths = sorted(os.walk(root))
-        useful_paths = [item[0] for item in all_paths if len(item[1]) == 0]
-        try:
-            assert (len(useful_paths) == 200)
-        except AssertionError:
-            print('assert (len(useful_paths) == 200) failed!', len(useful_paths))
-
-        if do_mapping:
-            mapping_path = os.path.join(os.path.dirname(__file__), 'KITTI_mapping.txt')
-            print('mapping_path', mapping_path)
-
-            with open(mapping_path) as fd:
-                lines = fd.readlines()
-                lines = [line.strip() for line in lines]
-            useful_paths = [path for path in useful_paths if lines[int(os.path.split(path)[-1])] != '']
-
-        res_paths = useful_paths
-
-        return res_paths
 
