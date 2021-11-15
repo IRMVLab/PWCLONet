@@ -89,4 +89,4 @@ Train the network by running `sh command.sh` please reminder to specify the `mod
 We thank all the CVPR reviewers and the following open-source project for the help of the implementations:
 - [PointNet++](https://github.com/charlesq34/pointnet2) (Furthest Points Sampling and TF operators)
 - [KITTI_odometry_evaluation_tool](https://github.com/LeoQLi/KITTI_odometry_evaluation_tool) 
-- [HALFlowNet](https://github.com/IRMVLab/HALFlow)(Network design)
+- [HALFlowNet](https://github.com/IRMVLab/HALFlow) (Network design)
