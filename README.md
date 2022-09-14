@@ -1,6 +1,6 @@
 **PWCLO-Net: Deep LiDAR Odometry in 3D Point Clouds Using Hierarchical Embedding Mask Optimization (CVPR 2021)**
 ==============================================================================================================================
-This is the official implementation of CVPR 2021 paper "PWCLO-Net: Deep LiDAR Odometry in 3D Point Clouds Using Hierarchical Embedding Mask Optimization" created by Guangming Wang, Xinrui Wu, Zhe Liu and Hesheng Wang.
+This is the official implementation of CVPR 2021 paper "[**PWCLO-Net: Deep LiDAR Odometry in 3D Point Clouds Using Hierarchical Embedding Mask Optimization**](https://openaccess.thecvf.com/content/CVPR2021/html/Wang_PWCLO-Net_Deep_LiDAR_Odometry_in_3D_Point_Clouds_Using_Hierarchical_CVPR_2021_paper.html)" created by Guangming Wang, Xinrui Wu, Zhe Liu and Hesheng Wang.
 ![](doc/network.png)
 
 ## Citation
